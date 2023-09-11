@@ -80,6 +80,7 @@ class CompletionService:
 
                 app_model_config = app_model_config.from_model_config_dict(conversation_override_model_configs)
 
+
             if is_model_config_override:
                 # build new app model config
                 if 'model' not in args['model_config']:
@@ -131,6 +132,7 @@ class CompletionService:
         generate_task_id = str(uuid.uuid4())
 
         pubsub = redis_client.pubsub()
+
         pubsub.subscribe(PubHandler.generate_channel_name(user, generate_task_id))
 
         user = cls.get_real_user_instead_of_proxy_obj(user)

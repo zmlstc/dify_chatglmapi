@@ -8,6 +8,7 @@ import tongyi from './tongyi'
 import spark from './spark'
 import minimax from './minimax'
 import chatglm from './chatglm'
+import chatglmapi from './chatglmapi'
 import xinference from './xinference'
 import openllm from './openllm'
 import localai from './localai'
@@ -23,6 +24,7 @@ export default {
   spark,
   minimax,
   chatglm,
+  chatglmapi,
   xinference,
   openllm,
   localai,

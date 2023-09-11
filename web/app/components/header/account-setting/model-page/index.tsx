@@ -83,6 +83,7 @@ const ModelPage = () => {
       config.tongyi,
       config.wenxin,
       config.chatglm,
+      config.chatglmapi,
       config.xinference,
       config.openllm,
     ]
@@ -97,6 +98,7 @@ const ModelPage = () => {
       config.tongyi,
       config.wenxin,
       config.chatglm,
+      config.chatglmapi,
       config.xinference,
       config.openllm,
       config.localai,

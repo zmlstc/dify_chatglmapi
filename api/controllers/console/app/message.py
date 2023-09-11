@@ -323,6 +323,7 @@ class MessageSuggestedQuestionApi(Resource):
     @login_required
     @account_initialization_required
     def get(self, app_id, message_id):
+
         app_id = str(app_id)
         message_id = str(message_id)
 

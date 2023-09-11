@@ -76,6 +76,7 @@ class ChatSpark(BaseChatModel):
             api_secret=values["api_secret"],
             api_domain=values.get('api_domain')
         )
+
         return values
 
     @property

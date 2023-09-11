@@ -81,6 +81,7 @@ class CompletionStopApi(AppApiResource):
 
 
 class ChatApi(AppApiResource):
+
     def post(self, app_model, end_user):
         if app_model.mode != 'chat':
             raise NotChatAppError()

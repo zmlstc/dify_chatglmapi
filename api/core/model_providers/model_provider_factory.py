@@ -48,6 +48,9 @@ class ModelProviderFactory:
         elif provider_name == 'chatglm':
             from core.model_providers.providers.chatglm_provider import ChatGLMProvider
             return ChatGLMProvider
+        elif provider_name == 'chatglmapi':
+            from core.model_providers.providers.chatglmapi_provider import ChatGLMApiProvider
+            return ChatGLMApiProvider
         elif provider_name == 'azure_openai':
             from core.model_providers.providers.azure_openai_provider import AzureOpenAIProvider
             return AzureOpenAIProvider

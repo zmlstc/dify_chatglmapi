@@ -10,26 +10,17 @@ import type { RefObject } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import CopyBtn from '@/app/components/app/chat/copy-btn'
 
-// Available language https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/AVAILABLE_LANGUAGES_HLJS.MD
-const capitalizationLanguageNameMap: Record<string, string> = {
-  sql: 'SQL',
-  javascript: 'JavaScript',
-  typescript: 'TypeScript',
-  vbscript: 'VBScript',
-  css: 'CSS',
-  html: 'HTML',
-  xml: 'XML',
-  php: 'PHP',
-}
-const getCorrectCapitalizationLanguageName = (language: string) => {
-  if (!language)
-    return 'Plain'
+// import { copyToClipboard } from "../utils";
+// https://txtfiddle.com/~hlshwya/extract-urls-from-text
+// const urlRegex = /\b((https?|ftp|file):\/\/|(www|ftp)\.)[-A-Z0-9+&@#\/%?=~_|$!:,.;]*[A-Z0-9+&@#\/%=~_|$]/ig
 
-  if (language in capitalizationLanguageNameMap)
-    return capitalizationLanguageNameMap[language]
-
-  return language.charAt(0).toUpperCase() + language.substring(1)
-}
+// function highlightURL(content: string) {
+//   return content.replace(urlRegex, (url) => {
+//     // fix http:// in [] will be parsed to link agin
+//     const res = `[${url.replace('://', ':&#47;&#47;')}](${url})`
+//     return res
+//   })
+// }
 export function PreCode(props: { children: any }) {
   const ref = useRef<HTMLPreElement>(null)
 
@@ -84,7 +75,12 @@ export function Markdown(props: { content: string }) {
           code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '')
             const language = match?.[1]
-            const languageShowName = getCorrectCapitalizationLanguageName(language || '')
+            const languageShowName = (() => {
+              if (language)
+                return language.charAt(0).toUpperCase() + language.substring(1)
+
+              return 'Plain'
+            })()
             return (!inline && match)
               ? (
                 <div>

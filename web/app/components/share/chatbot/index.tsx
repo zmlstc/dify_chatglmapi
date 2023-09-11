@@ -238,6 +238,7 @@ const Main: FC<IMainProps> = ({
     if (caculatedIntroduction && caculatedPromptVariables)
       caculatedIntroduction = replaceStringWithValues(caculatedIntroduction, promptConfig?.prompt_variables || [], caculatedPromptVariables)
 
+    // console.log(isPublicVersion)
     const openstatement = {
       id: `${Date.now()}`,
       content: caculatedIntroduction,

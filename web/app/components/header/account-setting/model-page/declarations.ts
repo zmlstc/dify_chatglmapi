@@ -39,6 +39,7 @@ export enum ProviderEnum {
   'spark' = 'spark',
   'minimax' = 'minimax',
   'chatglm' = 'chatglm',
+  'chatglmapi' = 'chatglmapi',
   'xinference' = 'xinference',
   'openllm' = 'openllm',
   'localai' = 'localai',

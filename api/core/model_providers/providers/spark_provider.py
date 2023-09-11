@@ -83,15 +83,14 @@ class SparkProvider(BaseModelProvider):
         if 'api_secret' not in credentials:
             raise CredentialsValidateFailedError('Spark api_secret must be provided.')
 
-        credential_kwargs = {
-            'app_id': credentials['app_id'],
-            'api_key': credentials['api_key'],
-            'api_secret': credentials['api_secret'],
-        }
-
         try:
+            credential_kwargs = {
+                'app_id': credentials['app_id'],
+                'api_key': credentials['api_key'],
+                'api_secret': credentials['api_secret'],
+            }
+
             chat_llm = ChatSpark(
-                model_name='spark-v2',
                 max_tokens=10,
                 temperature=0.01,
                 **credential_kwargs
@@ -105,27 +104,7 @@ class SparkProvider(BaseModelProvider):
 
             chat_llm(messages)
         except SparkError as ex:
-            # try spark v1.5 if v2.1 failed
-            try:
-                chat_llm = ChatSpark(
-                    model_name='spark',
-                    max_tokens=10,
-                    temperature=0.01,
-                    **credential_kwargs
-                )
-
-                messages = [
-                    HumanMessage(
-                        content="ping"
-                    )
-                ]
-
-                chat_llm(messages)
-            except SparkError as ex:
-                raise CredentialsValidateFailedError(str(ex))
-            except Exception as ex:
-                logging.exception('Spark config validation failed')
-                raise ex
+            raise CredentialsValidateFailedError(str(ex))
         except Exception as ex:
             logging.exception('Spark config validation failed')
             raise ex

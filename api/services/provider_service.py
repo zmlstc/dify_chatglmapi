@@ -28,6 +28,7 @@ class ProviderService:
         model_provider_rules = ModelProviderFactory.get_provider_rules()
         model_provider_names = [model_provider_name for model_provider_name, _ in model_provider_rules.items()]
 
+
         for model_provider_name, model_provider_rule in model_provider_rules.items():
             if ProviderType.SYSTEM.value in model_provider_rule['support_provider_types'] \
                     and 'system_config' in model_provider_rule and model_provider_rule['system_config'] \
